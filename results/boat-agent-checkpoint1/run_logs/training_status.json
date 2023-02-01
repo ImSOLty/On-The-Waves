@@ -1,0 +1,47 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 499983,
+                "file_path": "results\\boat-agent-checkpoint1\\boat\\boat-499983.onnx",
+                "reward": 30.0,
+                "creation_time": 1674578598.5540805,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-checkpoint1\\boat\\boat-499983.pt"
+                ]
+            },
+            {
+                "steps": 999982,
+                "file_path": "results\\boat-agent-checkpoint1\\boat\\boat-999982.onnx",
+                "reward": 40.125,
+                "creation_time": 1674579082.0046697,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-checkpoint1\\boat\\boat-999982.pt"
+                ]
+            },
+            {
+                "steps": 1000110,
+                "file_path": "results\\boat-agent-checkpoint1\\boat\\boat-1000110.onnx",
+                "reward": 40.125,
+                "creation_time": 1674579082.0837767,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-checkpoint1\\boat\\boat-1000110.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000110,
+            "file_path": "results\\boat-agent-checkpoint1\\boat.onnx",
+            "reward": 40.125,
+            "creation_time": 1674579082.0837767,
+            "auxillary_file_paths": [
+                "results\\boat-agent-checkpoint1\\boat\\boat-1000110.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}

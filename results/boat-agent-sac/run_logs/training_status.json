@@ -1,0 +1,65 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 2499929,
+                "file_path": "results\\boat-agent-sac\\boat\\boat-2499929.onnx",
+                "reward": 6.884553134441376,
+                "creation_time": 1674498456.5964167,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-sac\\boat\\boat-2499929.pt"
+                ]
+            },
+            {
+                "steps": 2500057,
+                "file_path": "results\\boat-agent-sac\\boat\\boat-2500057.onnx",
+                "reward": 6.884553134441376,
+                "creation_time": 1674498456.680039,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-sac\\boat\\boat-2500057.pt"
+                ]
+            },
+            {
+                "steps": 2803494,
+                "file_path": "results\\boat-agent-sac\\boat\\boat-2803494.onnx",
+                "reward": null,
+                "creation_time": 1674500074.7202814,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-sac\\boat\\boat-2803494.pt"
+                ]
+            },
+            {
+                "steps": 2999951,
+                "file_path": "results\\boat-agent-sac\\boat\\boat-2999951.onnx",
+                "reward": null,
+                "creation_time": 1674500674.4143336,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-sac\\boat\\boat-2999951.pt"
+                ]
+            },
+            {
+                "steps": 3002170,
+                "file_path": "results\\boat-agent-sac\\boat\\boat-3002170.onnx",
+                "reward": 6.223347425460815,
+                "creation_time": 1674500674.5823355,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-sac\\boat\\boat-3002170.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3002170,
+            "file_path": "results\\boat-agent-sac\\boat.onnx",
+            "reward": 6.223347425460815,
+            "creation_time": 1674500674.5823355,
+            "auxillary_file_paths": [
+                "results\\boat-agent-sac\\boat\\boat-3002170.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 2000041,
+                "file_path": "results\\boat-agent-decperiod3\\boat\\boat-2000041.onnx",
+                "reward": 41.7082327913355,
+                "creation_time": 1674581757.9254842,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-decperiod3\\boat\\boat-2000041.pt"
+                ]
+            },
+            {
+                "steps": 2499872,
+                "file_path": "results\\boat-agent-decperiod3\\boat\\boat-2499872.onnx",
+                "reward": 339.14769065380096,
+                "creation_time": 1674582387.8830206,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-decperiod3\\boat\\boat-2499872.pt"
+                ]
+            },
+            {
+                "steps": 2500128,
+                "file_path": "results\\boat-agent-decperiod3\\boat\\boat-2500128.onnx",
+                "reward": 339.14769065380096,
+                "creation_time": 1674582387.9778848,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-decperiod3\\boat\\boat-2500128.pt"
+                ]
+            },
+            {
+                "steps": 2999922,
+                "file_path": "results\\boat-agent-decperiod3\\boat\\boat-2999922.onnx",
+                "reward": null,
+                "creation_time": 1674582985.8209107,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-decperiod3\\boat\\boat-2999922.pt"
+                ]
+            },
+            {
+                "steps": 3000050,
+                "file_path": "results\\boat-agent-decperiod3\\boat\\boat-3000050.onnx",
+                "reward": null,
+                "creation_time": 1674582985.8993115,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-decperiod3\\boat\\boat-3000050.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3000050,
+            "file_path": "results\\boat-agent-decperiod3\\boat.onnx",
+            "reward": null,
+            "creation_time": 1674582985.8993115,
+            "auxillary_file_paths": [
+                "results\\boat-agent-decperiod3\\boat\\boat-3000050.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}

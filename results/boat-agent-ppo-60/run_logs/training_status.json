@@ -1,0 +1,65 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 4500109,
+                "file_path": "results\\boat-agent-ppo-60\\boat\\boat-4500109.onnx",
+                "reward": null,
+                "creation_time": 1674598065.3978555,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-ppo-60\\boat\\boat-4500109.pt"
+                ]
+            },
+            {
+                "steps": 4999953,
+                "file_path": "results\\boat-agent-ppo-60\\boat\\boat-4999953.onnx",
+                "reward": 45.73248869180679,
+                "creation_time": 1674599247.2495134,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-ppo-60\\boat\\boat-4999953.pt"
+                ]
+            },
+            {
+                "steps": 5499895,
+                "file_path": "results\\boat-agent-ppo-60\\boat\\boat-5499895.onnx",
+                "reward": 45.877762709345134,
+                "creation_time": 1674599732.2359796,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-ppo-60\\boat\\boat-5499895.pt"
+                ]
+            },
+            {
+                "steps": 5999942,
+                "file_path": "results\\boat-agent-ppo-60\\boat\\boat-5999942.onnx",
+                "reward": 46.571116187355734,
+                "creation_time": 1674600209.6915855,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-ppo-60\\boat\\boat-5999942.pt"
+                ]
+            },
+            {
+                "steps": 6152306,
+                "file_path": "results\\boat-agent-ppo-60\\boat\\boat-6152306.onnx",
+                "reward": 45.762771328290306,
+                "creation_time": 1674600371.6020718,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-ppo-60\\boat\\boat-6152306.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6152306,
+            "file_path": "results\\boat-agent-ppo-60\\boat.onnx",
+            "reward": 45.762771328290306,
+            "creation_time": 1674600371.6020718,
+            "auxillary_file_paths": [
+                "results\\boat-agent-ppo-60\\boat\\boat-6152306.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}
