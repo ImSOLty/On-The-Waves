@@ -37,7 +37,7 @@ InitCodeMarker
 ExportedObj/
 .consulo/
 *.csproj
-*.meta
+#*.meta #removing due to Missing ... issues
 *.unityproj
 *.sln
 *.suo
