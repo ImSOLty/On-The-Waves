@@ -1,0 +1,65 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 2000060,
+                "file_path": "results\\boat-agent-poca\\boat\\boat-2000060.onnx",
+                "reward": 41.198309659957886,
+                "creation_time": 1674491673.0566168,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-poca\\boat\\boat-2000060.pt"
+                ]
+            },
+            {
+                "steps": 2499932,
+                "file_path": "results\\boat-agent-poca\\boat\\boat-2499932.onnx",
+                "reward": 17.004901126027107,
+                "creation_time": 1674492199.343881,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-poca\\boat\\boat-2499932.pt"
+                ]
+            },
+            {
+                "steps": 2500060,
+                "file_path": "results\\boat-agent-poca\\boat\\boat-2500060.onnx",
+                "reward": 17.004901126027107,
+                "creation_time": 1674492199.4372194,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-poca\\boat\\boat-2500060.pt"
+                ]
+            },
+            {
+                "steps": 2999995,
+                "file_path": "results\\boat-agent-poca\\boat\\boat-2999995.onnx",
+                "reward": 171.64805629849434,
+                "creation_time": 1674492713.6466253,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-poca\\boat\\boat-2999995.pt"
+                ]
+            },
+            {
+                "steps": 3000123,
+                "file_path": "results\\boat-agent-poca\\boat\\boat-3000123.onnx",
+                "reward": 171.64805629849434,
+                "creation_time": 1674492713.7444425,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-poca\\boat\\boat-3000123.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 3000123,
+            "file_path": "results\\boat-agent-poca\\boat.onnx",
+            "reward": 171.64805629849434,
+            "creation_time": 1674492713.7444425,
+            "auxillary_file_paths": [
+                "results\\boat-agent-poca\\boat\\boat-3000123.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}

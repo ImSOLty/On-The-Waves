@@ -1,8 +1,16 @@
+#Custom
+/[Gg]ame/
+/[Uu]serSettings/
+InitCodeMarker
+0.16.1
+*packages-lock.json
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+/.idea/
 /[Ll]ibrary/
+/[Vv]env/
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
@@ -29,6 +37,7 @@
 ExportedObj/
 .consulo/
 *.csproj
+*.meta
 *.unityproj
 *.sln
 *.suo

@@ -1,0 +1,47 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 499970,
+                "file_path": "results\\boat-agent-border-allowed\\boat\\boat-499970.onnx",
+                "reward": -189.47381007671356,
+                "creation_time": 1674577452.4815636,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-border-allowed\\boat\\boat-499970.pt"
+                ]
+            },
+            {
+                "steps": 999909,
+                "file_path": "results\\boat-agent-border-allowed\\boat\\boat-999909.onnx",
+                "reward": 29.83429299791654,
+                "creation_time": 1674577933.9912467,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-border-allowed\\boat\\boat-999909.pt"
+                ]
+            },
+            {
+                "steps": 1000037,
+                "file_path": "results\\boat-agent-border-allowed\\boat\\boat-1000037.onnx",
+                "reward": 29.83429299791654,
+                "creation_time": 1674577934.0682514,
+                "auxillary_file_paths": [
+                    "results\\boat-agent-border-allowed\\boat\\boat-1000037.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000037,
+            "file_path": "results\\boat-agent-border-allowed\\boat.onnx",
+            "reward": 29.83429299791654,
+            "creation_time": 1674577934.0682514,
+            "auxillary_file_paths": [
+                "results\\boat-agent-border-allowed\\boat\\boat-1000037.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}
