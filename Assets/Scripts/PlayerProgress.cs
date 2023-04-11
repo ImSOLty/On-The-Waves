@@ -48,15 +48,15 @@ public class PlayerProgress : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "ActualCheckpoint":
-                Checkpoint ch = other.gameObject.GetComponent<Checkpoint>();
-                if (checkpoint == ch.number)
+                int chNumber = Int32.Parse(other.gameObject.name); 
+                if (checkpoint == chNumber)
                 {
                     checkpoint++;
                     Reward(2, "Checkpoint!");
                 }
                 else
                 {
-                    if (ch.number == -1 && checkpoint != 0)
+                    if (chNumber == -1 && checkpoint != 0)
                     {
                         checkpoint = 0;
                         lap++;

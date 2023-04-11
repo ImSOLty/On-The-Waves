@@ -73,11 +73,11 @@ public class MapGenerator : MonoBehaviour
                 ch.transform.position+= Vector3.up*12;
                 if (tile.start)
                 {
-                    ch.GetComponent<Checkpoint>().number = -1;
+                    ch.name = (-1).ToString();
                 }
                 else
                 {
-                    ch.GetComponent<Checkpoint>().number = checkpoints++;
+                    ch.name = (checkpoints++).ToString();
                 }
             }
 

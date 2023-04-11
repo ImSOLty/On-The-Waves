@@ -171,16 +171,16 @@ MonoBehaviour:
   model: {fileID: 2189286636638010932}
   upmodel: {fileID: 8750664182452277714}
   boatFoot: {fileID: 1831010929604915970}
+  engineParticlesHead: {fileID: 2189286637450514513}
   acceleration: 60
   steeringDefault: 250
   steeringDrift: 1000
   driftDecrease: 0.5
+  ml: 1
   currentRotate: 0
   currentSpeed: 0
-  ml: 1
   isOwner: 0
   gameStarted: 0
-  engineParticlesHead: {fileID: 2189286637450514513}
 --- !u!114 &688192926023135817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5210,7 +5210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2189286637257408582
 Transform:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1102151205824450058}
   - component: {fileID: 4292381543751603281}
-  - component: {fileID: 4502143821742305450}
   m_Layer: 0
   m_Name: ActualCheckpoint
   m_TagString: ActualCheckpoint
@@ -49,19 +48,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 46.62381, y: 10.576103, z: 1}
   m_Center: {x: 0, y: -7.128998, z: 0}
---- !u!114 &4502143821742305450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1102151205824450059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73b53129a29ffa44aa7ec12015e57519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  number: 0
 --- !u!1 &1102151206525942299
 GameObject:
   m_ObjectHideFlags: 0
