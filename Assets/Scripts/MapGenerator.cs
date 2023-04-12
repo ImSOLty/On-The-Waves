@@ -1,14 +1,26 @@
+using System;
 using System.Collections.Generic;
+using System.Text;
 using JetBrains.Annotations;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    
+    private const string TRACK1 =
+        "U3RyYWlnaHR+VHJ1ZX5UcnVlfkZhbHNlfi0xNzV+LTM1fjE4MH5GYWxzZSpDb3JuZXJ+RmFsc2V+RmFsc2V+RmFsc2V+LTE3NX4zNX4xODB+VHJ1ZSpTdHJhaWdodH5GYWxzZX5GYWxzZX5GYWxzZX4tMTA1fjM1fjI3MH5GYWxzZSpDb3JuZXJ+RmFsc2V+RmFsc2V+RmFsc2V+LTM1fjM1fjI3MH5GYWxzZSpTdHJhaWdodH5GYWxzZX5UcnVlfkZhbHNlfi0zNX4xMDV+MTgwfkZhbHNlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4tMzV+MTc1fjE4MH5UcnVlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4zNX4xNzV+MjcwflRydWUqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfjM1fjEwNX4zNjB+RmFsc2UqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfjEwNX4xMDV+MjcwflRydWUqU3RyYWlnaHR+RmFsc2V+RmFsc2V+RmFsc2V+MTA1fjM1fjM2MH5GYWxzZSpTdHJhaWdodH5GYWxzZX5UcnVlfkZhbHNlfjEwNX4tMzV+MzYwfkZhbHNlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4xMDV+LTEwNX4zNjB+VHJ1ZSpDb3JuZXJ+RmFsc2V+RmFsc2V+RmFsc2V+MzV+LTEwNX40NTB+VHJ1ZSpDb3JuZXJ+RmFsc2V+RmFsc2V+RmFsc2V+MzV+LTM1fjE4MH5GYWxzZSpTdHJhaWdodH5GYWxzZX5UcnVlfkZhbHNlfi0zNX4tMzV+OTB+RmFsc2UqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfi0xMDV+LTM1fjkwfkZhbHNlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4tMTA1fi0xMDV+MH5UcnVlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4tMTc1fi0xMDV+OTB+VHJ1ZSo=";
+
+    private const string TRACK2 =
+        "U3RyYWlnaHR+VHJ1ZX5UcnVlfkZhbHNlfi0zNX4tMzV+MTgwfkZhbHNlKlN0cmFpZ2h0fkZhbHNlfkZhbHNlfkZhbHNlfi0zNX4zNX4xODB+RmFsc2UqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfi0zNX4xMDV+MTgwfkZhbHNlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4tMTA1fjEwNX45MH5UcnVlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4tMTA1fjE3NX4xODB+VHJ1ZSpTdHJhaWdodH5GYWxzZX5GYWxzZX5GYWxzZX4tMzV+MTc1fjI3MH5GYWxzZSpTdHJhaWdodH5GYWxzZX5GYWxzZX5GYWxzZX4zNX4xNzV+MjcwfkZhbHNlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4xMDV+MTc1fjI3MH5UcnVlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4xMDV+MTA1fjM2MH5UcnVlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4zNX4xMDV+NDUwfkZhbHNlKlN0cmFpZ2h0fkZhbHNlflRydWV+RmFsc2V+MzV+MzV+MzYwfkZhbHNlKlN0cmFpZ2h0fkZhbHNlfkZhbHNlfkZhbHNlfjM1fi0zNX4zNjB+RmFsc2UqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfjM1fi0xMDV+MzYwfkZhbHNlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4xMDV+LTEwNX4yNzB+VHJ1ZSpDb3JuZXJ+RmFsc2V+RmFsc2V+RmFsc2V+MTA1fi0xNzV+MzYwflRydWUqU3RyYWlnaHR+RmFsc2V+RmFsc2V+RmFsc2V+MzV+LTE3NX40NTB+RmFsc2UqU3RyYWlnaHR+RmFsc2V+RmFsc2V+RmFsc2V+LTM1fi0xNzV+NDUwfkZhbHNlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4tMTA1fi0xNzV+NDUwflRydWUqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfi0xMDV+LTEwNX4xODB+VHJ1ZSpDb3JuZXJ+RmFsc2V+RmFsc2V+RmFsc2V+LTM1fi0xMDV+MjcwfkZhbHNlKg==";
+
+
+    private const string TRACK3 =
+        "U3RyYWlnaHR+VHJ1ZX5UcnVlfkZhbHNlfjEwNX4zNX4xODB+RmFsc2UqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfjEwNX4xMDV+MTgwfkZhbHNlKlN0cmFpZ2h0fkZhbHNlfkZhbHNlfkZhbHNlfjM1fjEwNX45MH5GYWxzZSpTdHJhaWdodH5GYWxzZX5UcnVlfkZhbHNlfi0zNX4xMDV+OTB+RmFsc2UqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfi0xMDV+MTA1fjkwfkZhbHNlKlN0cmFpZ2h0fkZhbHNlfkZhbHNlfkZhbHNlfi0xMDV+MzV+MH5GYWxzZSpTdHJhaWdodH5GYWxzZX5UcnVlfkZhbHNlfi0xMDV+LTM1fjB+RmFsc2UqQ29ybmVyfkZhbHNlfkZhbHNlfkZhbHNlfi0xMDV+LTEwNX4wfkZhbHNlKlN0cmFpZ2h0fkZhbHNlfkZhbHNlfkZhbHNlfi0zNX4tMTA1fi05MH5GYWxzZSpTdHJhaWdodH5GYWxzZX5UcnVlfkZhbHNlfjM1fi0xMDV+LTkwfkZhbHNlKkNvcm5lcn5GYWxzZX5GYWxzZX5GYWxzZX4xMDV+LTEwNX4tOTB+RmFsc2UqU3RyYWlnaHR+RmFsc2V+RmFsc2V+RmFsc2V+MTA1fi0zNX4xODB+RmFsc2Uq";
+
     [SerializeField] GameObject straight, corner, checkpoint, finish;
     public int checkpoints;
     public int multiplicator;
     private List<GameObject> track = new List<GameObject>();
+
     public enum Type
     {
         STRAIGHT,
@@ -35,24 +47,25 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    public Transform GenerateAndReturnStart(int track)
+    public Transform GenerateAndReturnStart(int trackId)
     {
         Tile[] tiles;
-        switch (track)
+        switch (trackId)
         {
             case 0:
-                tiles = Track1();
+                tiles = Track(TRACK1);
                 break;
             case 1:
-                tiles = Track2();
+                tiles = Track(TRACK2);
                 break;
             case 2:
-                tiles = Track3();
+                tiles = Track(TRACK3);
                 break;
             default:
-                tiles = Track1();
+                tiles = Track(TRACK1);
                 break;
         }
+
         Transform start = null;
         checkpoints = 0;
         foreach (Tile tile in tiles)
@@ -68,9 +81,10 @@ public class MapGenerator : MonoBehaviour
                     inst = finish;
                     start = t.transform.Find("Checkpoint1");
                 }
+
                 GameObject ch = Instantiate(inst, t.transform.position, Quaternion.identity, t.transform);
                 ch.transform.forward = t.transform.forward;
-                ch.transform.position+= Vector3.up*12;
+                ch.transform.position += Vector3.up * 12;
                 if (tile.start)
                 {
                     ch.name = (-1).ToString();
@@ -85,7 +99,7 @@ public class MapGenerator : MonoBehaviour
             this.track.Add(t);
             multiplicator += 50;
         }
-        
+
         return start;
     }
 
@@ -101,67 +115,25 @@ public class MapGenerator : MonoBehaviour
         track.Clear();
     }
 
-    Tile[] Track1() 
+    Tile[] Track(string code)
     {
-        return new Tile[]
+        List<Tile> tiles = new List<Tile>();
+        byte[] decodedBytes = Convert.FromBase64String(code);
+        string decodedText = Encoding.UTF8.GetString(decodedBytes);
+        foreach (string part in decodedText.Split("*"))
         {
-            new Tile(Type.STRAIGHT, true, true, new Vector3(140, 0, 0), new Vector3(0, 180, 0), new Vector3(1, 1, 1)),
-            new Tile(Type.CORNER, false, false, new Vector3(140,0,-70), new Vector3(0,0,0), new Vector3(-1,1,1)),
-            new Tile(Type.STRAIGHT, false, false, new Vector3(70,0,-70), new Vector3(0,-90,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(0,0,-70), new Vector3(0,90,0), new Vector3(1,1,1)),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(0,0,-140), new Vector3(0,180,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(0,0,-210), new Vector3(0,0,0), new Vector3(-1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-70,0,-210), new Vector3(0,90,0), new Vector3(-1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-70,0,-140), new Vector3(0,-180,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-140,0,-140), new Vector3(0,90,0), new Vector3(-1,1,1)),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(-140,0,-70), new Vector3(0,0,0), new Vector3(1,1,1)),
-            new Tile(Type.STRAIGHT, false, false, new Vector3(-140,0,0), new Vector3(0,0,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-140,0,70), new Vector3(0,180,0), new Vector3(-1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-70,0,70), new Vector3(0,-90,0), new Vector3(-1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-70,0,0), new Vector3(0,0,0), new Vector3(1,1,1)),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(0,0,0), new Vector3(0,90,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(70,0,0), new Vector3(0,-90,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(70,0,70), new Vector3(0,180,0), new Vector3(-1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(140,0,70), new Vector3(0,-90,0), new Vector3(-1,1,1)),
-        };
-    }
-    
-    Tile[] Track2()
-    {
-        return new Tile[]
-        {
-            new Tile(Type.STRAIGHT, true, true, new Vector3(-35,0,0), new Vector3(0,180,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-35,0,-70), new Vector3(0,0,0), new Vector3(-1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(-105,0,-70), new Vector3(0,90,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(-105,0,-140), new Vector3(0,0,0), new Vector3(1,1,1) ),
-            new Tile(Type.STRAIGHT, false, false, new Vector3(-35,0,-140), new Vector3(0,90,0), new Vector3(1,1,1) ),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(35,0,-140), new Vector3(0,90,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(105,0,-140), new Vector3(0,-90,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(105,0,-70), new Vector3(0,180,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(35,0,-70), new Vector3(0,90,0), new Vector3(-1,1,1) ),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(35,0,0), new Vector3(0,0,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(35,0,70), new Vector3(0,180,0), new Vector3(-1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(105,0,70), new Vector3(0,-90,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(105,0,140), new Vector3(0,180,0), new Vector3(1,1,1) ),
-            new Tile(Type.STRAIGHT, false, false, new Vector3(35,0,140), new Vector3(0,-90,0), new Vector3(1,1,1) ),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(-35,0,140), new Vector3(0,-90,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(-105,0,140), new Vector3(0,90,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(-105,0,70), new Vector3(0,0,0), new Vector3(1,1,1) ),
-            new Tile(Type.CORNER, false, false, new Vector3(-35,0,70), new Vector3(0,-90,0), new Vector3(-1,1,1) ),
-        };
-    }
-    Tile[] Track3()
-    {
-        return new Tile[]
-        {
-            new Tile(Type.STRAIGHT, true, true, new Vector3(-70,0,0), new Vector3(0,180,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-70,0,-70), new Vector3(0,0,0), new Vector3(1,1,1) ),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(0,0,-70), new Vector3(0,90,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(70,0,-70), new Vector3(0,-90,0), new Vector3(1,1,1) ),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(70,0,0), new Vector3(0,0,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(70,0,70), new Vector3(0,-180,0), new Vector3(1,1,1) ),
-            new Tile(Type.STRAIGHT, false, true, new Vector3(0,0,70), new Vector3(0,-90,0), new Vector3(1,1,1)),
-            new Tile(Type.CORNER, false, false, new Vector3(-70,0,70), new Vector3(0,90,0), new Vector3(1,1,1) ),
-        };
+            if (part.Equals("")) continue;
+            string[] data = part.Split("~");
+            tiles.Add(new Tile(
+                data[0].Equals("Corner") ? Type.CORNER : Type.STRAIGHT,
+                data[1].Equals("True"),
+                data[2].Equals("True"),
+                //
+                new Vector3(int.Parse(data[4]), 0, int.Parse(data[5])),
+                new Vector3(0, int.Parse(data[6]) + (data[0].Equals("Corner") ? 0 : 180), 0),
+                new Vector3(data[7].Equals("False") ? 1 : -1, 1, 1)));
+        }
+
+        return tiles.ToArray();
     }
 }
