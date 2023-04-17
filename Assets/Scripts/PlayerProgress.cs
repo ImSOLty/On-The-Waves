@@ -8,8 +8,9 @@ public class PlayerProgress : MonoBehaviour
 {
     public GameControl GameControl;
     public NetworkControl NetworkControl;
+    public MapGenerator MapGenerator;
     private BoatAgent _agent;
-    
+
     public ulong myId;
     private bool ml = false, myFinished = false;
 
@@ -19,22 +20,24 @@ public class PlayerProgress : MonoBehaviour
     public int totalCheckpoints = 0;
 
     private int Multiplicator = 50;
-    private int WinMultiplicator = 0;
+    private int WinMultiplicator = 0, CoinMultiplicator;
 
     private float startTime;
 
     public void SetInitial(ulong id, NetworkControl nc, GameControl gameControl, bool isMl)
     {
+        MapGenerator = FindObjectOfType<MapGenerator>();
         startTime = Time.unscaledTime;
         myId = id;
         ml = isMl;
         NetworkControl = nc;
         GameControl = gameControl;
         _agent = transform.parent.Find("Control").GetComponent<BoatAgent>();
-        
+
         totalLaps = FindObjectOfType<MainMenu>().lapsAmount;
-        totalCheckpoints = FindObjectOfType<MapGenerator>().checkpoints;
-        WinMultiplicator = FindObjectOfType<MapGenerator>().multiplicator*totalLaps;
+        totalCheckpoints = MapGenerator.checkpoints;
+        WinMultiplicator = MapGenerator.multiplicator * totalLaps;
+        CoinMultiplicator = MapGenerator.coinsAmount == 0 ? 0 : 5 / MapGenerator.coinsAmount;
         if (!ml)
             GameControl.UpdateForMe(lap, checkpoint, totalLaps, totalCheckpoints);
     }
@@ -45,10 +48,11 @@ public class PlayerProgress : MonoBehaviour
         {
             return;
         }
+
         switch (other.gameObject.tag)
         {
             case "ActualCheckpoint":
-                int chNumber = Int32.Parse(other.gameObject.name); 
+                int chNumber = Int32.Parse(other.gameObject.name);
                 if (checkpoint == chNumber)
                 {
                     checkpoint++;
@@ -62,9 +66,10 @@ public class PlayerProgress : MonoBehaviour
                         lap++;
                         if (lap == totalLaps)
                         {
-                            if(_agent)
+                            if (_agent)
                                 _agent.enabled = false;
-                            Reward(WinMultiplicator/(Time.unscaledTime-startTime), "Finished Track!", finished:true);
+                            Reward(WinMultiplicator / (Time.unscaledTime - startTime), "Finished Track!",
+                                finished: true);
                             break;
                         }
 
@@ -78,23 +83,29 @@ public class PlayerProgress : MonoBehaviour
                 float directionDot = Vector3.Dot(transform.parent.Find("Control").forward, checkpointForward);
                 Reward(directionDot, "Took A Corner!", "skill");
                 break;
+            case "Coin":
+                Destroy(other.gameObject);
+                Reward(CoinMultiplicator, "COIN!", "coins");
+                break;
             default:
                 return;
         }
     }
+
     private void OnCollisionEnter(Collision other)
     {
         if (myFinished)
         {
             return;
         }
+
         if (other.gameObject.CompareTag("Border"))
         {
             Reward(-0.5f, "Touched The Border!", "skill");
         }
     }
 
-    void Reward(float amount, string reason, string type="", bool finished = false)
+    void Reward(float amount, string reason, string type = "", bool finished = false)
     {
         int actualReward = Mathf.RoundToInt(amount * Multiplicator);
         if (!ml)
@@ -110,7 +121,7 @@ public class PlayerProgress : MonoBehaviour
         NetworkControl.UpdateControlServerRpc(myId, actualReward, finished, type);
         if (!ml)
             GameControl.UpdateForMe(lap, checkpoint, totalLaps, totalCheckpoints);
-        if(finished)
+        if (finished)
             myFinished = true;
     }
 }

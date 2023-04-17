@@ -82,7 +82,7 @@ public class LobbyManager : MonoBehaviour
         _mainMenu.UpdatePlayersList(list);
     }
 
-    public async void CreateLobby(string name, int numberOfPlayers, int numberOfLaps, int track)
+    public async void CreateLobby(string name, int numberOfPlayers, int numberOfLaps, int track, string customTrack)
     {
         try
         {
@@ -94,6 +94,7 @@ public class LobbyManager : MonoBehaviour
                 {
                     {"StartGame", new DataObject(DataObject.VisibilityOptions.Member, "0")},
                     {"Track", new DataObject(DataObject.VisibilityOptions.Member, track.ToString())},
+                    {"CustomTrack", new DataObject(DataObject.VisibilityOptions.Member, customTrack)},
                     {"Laps", new DataObject(DataObject.VisibilityOptions.Member, numberOfLaps.ToString())},
                 }
             };
@@ -101,7 +102,7 @@ public class LobbyManager : MonoBehaviour
             Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(name, numberOfPlayers, createLobbyOptions);
             curLobby = lobby;
             _mainMenu.SetLobby(curLobby.LobbyCode, curLobby.Name, curLobby.MaxPlayers,
-                int.Parse(curLobby.Data["Laps"].Value), int.Parse(curLobby.Data["Track"].Value));
+                int.Parse(curLobby.Data["Laps"].Value), int.Parse(curLobby.Data["Track"].Value), curLobby.Data["CustomTrack"].Value);
         }
         catch (LobbyServiceException e)
         {
@@ -126,7 +127,7 @@ public class LobbyManager : MonoBehaviour
             Debug.Log("Joined lobby by code " + code);
             curLobby = lobby;
             _mainMenu.SetLobby(curLobby.LobbyCode, curLobby.Name, curLobby.MaxPlayers,
-                int.Parse(curLobby.Data["Laps"].Value), int.Parse(curLobby.Data["Track"].Value));
+                int.Parse(curLobby.Data["Laps"].Value), int.Parse(curLobby.Data["Track"].Value), curLobby.Data["CustomTrack"].Value);
             _mainMenu.JoinedSuccess();
         }
         catch (LobbyServiceException e)

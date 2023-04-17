@@ -17,6 +17,7 @@ TagManager:
   - Ground
   - ActualCheckpoint
   - ActualCorner
+  - Coin
   layers:
   - Default
   - TransparentFX

@@ -79,7 +79,7 @@ public class NetworkControl : NetworkBehaviour
 
     void SetScene()
     {
-        start = FindObjectOfType<MapGenerator>().GenerateAndReturnStart(_mainMenu.chosenTrack);
+        start = FindObjectOfType<MapGenerator>().GenerateAndReturnStart(_mainMenu.chosenTrack, _mainMenu.customTrack);
 
         OtherSettings();
 

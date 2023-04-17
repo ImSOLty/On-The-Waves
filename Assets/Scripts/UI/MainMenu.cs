@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 using Unity.Barracuda;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +22,7 @@ public class MainMenu : MonoBehaviour
     [HideInInspector] public bool ready = false;
     [HideInInspector] public int chosenColor = 0;
     public int chosenTrack = 0;
+    public string customTrack = "";
 
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private Image trackImage, lobbyTrackImage;
@@ -46,7 +49,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Sprite[] tracks;
 
     [SerializeField] private Sprite readySprite, notReadySprite;
-    [SerializeField] private Button playButton;
+    [SerializeField] private Button playButton, createLobbyButton;
 
     [SerializeField] private Text skilledText, unskilledText, fastestText, slowestText, winnerName, winnerPoints;
 
@@ -112,7 +115,7 @@ public class MainMenu : MonoBehaviour
         createLobbyPanel.SetActive(false);
         inLobbyPanel.SetActive(true);
         playButton.gameObject.SetActive(true);
-        _lobbyManager.CreateLobby(lobbyName.text, playersAmount, lapsAmount, chosenTrack);
+        _lobbyManager.CreateLobby(lobbyName.text, playersAmount, lapsAmount, chosenTrack, customTrack);
     }
 
     public void OnSaveClick()
@@ -176,13 +179,42 @@ public class MainMenu : MonoBehaviour
     {
         if (left)
         {
-            chosenTrack = chosenTrack == 0 ? 2 : chosenTrack - 1;
+            chosenTrack = chosenTrack == 0 ? 3 : chosenTrack - 1;
             trackImage.sprite = tracks[chosenTrack];
         }
         else
         {
-            chosenTrack = chosenTrack == 2 ? 0 : chosenTrack + 1;
+            chosenTrack = chosenTrack == 3 ? 0 : chosenTrack + 1;
             trackImage.sprite = tracks[chosenTrack];
+        }
+
+        if (chosenTrack == 3)
+        {
+            try
+            {
+                string clipBoard = GUIUtility.systemCopyBuffer;
+                byte[] decodedBytes = Convert.FromBase64String(clipBoard);
+                string decodedText = Encoding.UTF8.GetString(decodedBytes);
+                if (!Regex.IsMatch(decodedText,
+                    "((Straight|Corner)~(False|True)~(False|True)~(False|True)~(-?\\d+)~(-?\\d+)~(-?\\d+)~(False|True)\\*)+"))
+                {
+                    createLobbyButton.interactable = false;
+                    customTrack = "";
+                }
+                else
+                {
+                    customTrack = clipBoard;
+                }
+            }
+            catch (FormatException)
+            {
+                createLobbyButton.interactable = false;
+                customTrack = "";
+            }
+        }
+        else
+        {
+            createLobbyButton.interactable = true;
         }
     }
 
@@ -264,13 +296,14 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void SetLobby(string codeStr, string name, int maxPlayers, int laps, int track)
+    public void SetLobby(string codeStr, string name, int maxPlayers, int laps, int track, string custom)
     {
         code.text = "CODE: " + codeStr;
         lobbyTextPlayers.text = maxPlayers + " players";
         lobbyTextLaps.text = laps + " laps";
         lobbyTextName.text = name;
         chosenTrack = track;
+        customTrack = custom;
         lapsAmount = laps;
         lobbyTrackImage.sprite = tracks[track];
     }

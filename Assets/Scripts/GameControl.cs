@@ -17,6 +17,7 @@ public class GameControl : MonoBehaviour
         public bool finished;
         public int skillScore;
         public int speedScore;
+        public int coinsScore;
 
         public PlayerData(string name, int score, Color color, ulong id)
         {
@@ -41,9 +42,14 @@ public class GameControl : MonoBehaviour
     {
         PlayerData player = PlayerDatas.Find(pd => pd.id == id);
         player.score += addScore;
-        if (type == "skill")
+        switch (type)
         {
-            player.skillScore += addScore;
+            case "skill":
+                player.skillScore += addScore;
+                break;
+            case "coins":
+                player.coinsScore += addScore;
+                break;
         }
 
         if (finished)
