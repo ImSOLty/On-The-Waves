@@ -54,6 +54,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Text skilledText, unskilledText, fastestText, slowestText, winnerName, winnerPoints;
 
     private AudioManager _audioManager;
+    [SerializeField] private Image soundButton;
+    [SerializeField] private Sprite mute, unmute;
 
     void Start()
     {
@@ -69,6 +71,16 @@ public class MainMenu : MonoBehaviour
         }
 
         _lobbyManager = GetComponent<LobbyManager>();
+    }
+
+    public void OnSoundClick()
+    {
+        foreach (var s in FindObjectsOfType<AudioSource>())
+        {
+            s.mute = !s.mute;
+        }
+
+        soundButton.sprite = soundButton.sprite.Equals(mute) ? unmute : mute;
     }
 
     public void OnCreateClick()
@@ -124,6 +136,7 @@ public class MainMenu : MonoBehaviour
             FindObjectOfType<ErrorMessage>().Error("Lobby name is empty");
             return;
         }
+
         createLobbyPanel.SetActive(false);
         inLobbyPanel.SetActive(true);
         playButton.gameObject.SetActive(true);
@@ -256,7 +269,7 @@ public class MainMenu : MonoBehaviour
         _audioManager.Play("Button");
         _lobbyManager.StartGame();
     }
-    
+
     public void OnMenuClick()
     {
         _audioManager.Play("Button");
@@ -342,7 +355,7 @@ public class MainMenu : MonoBehaviour
         baseCamera.SetActive(true);
         inGamePanel.SetActive(true);
     }
-    
+
     public void ClearInfoAndShowStats(List<GameControl.PlayerData> list)
     {
         Cursor.lockState = CursorLockMode.None;
@@ -351,6 +364,7 @@ public class MainMenu : MonoBehaviour
             FindObjectOfType<ErrorMessage>().Error("No player data found");
             return;
         }
+
         playersAmount = 2;
         lapsAmount = 1;
         ready = false;
@@ -361,27 +375,32 @@ public class MainMenu : MonoBehaviour
         lapsAmountText.text = lapsAmount + " laps";
         trackImage.sprite = tracks[chosenTrack];
         lobbyTrackImage.sprite = tracks[chosenTrack];
-        
+
         foreach (var p in playersText)
         {
             p.SetActive(false);
         }
-        
+
         baseCamera.SetActive(false);
         inGamePanel.SetActive(false);
-        
+
         menuCamera.SetActive(true);
         statsPanel.SetActive(true);
-        
+
         winnerName.text = list[0].name;
-        winnerPoints.text = list[0].score+" points";
+        winnerPoints.text = list[0].score + " points";
         list.Sort((x, y) =>
             x.skillScore.CompareTo(y.skillScore));
-        skilledText.text = list[list.Count-1].name+" as the most skilled driver earned "+list[list.Count-1].score+" points.";
-        unskilledText.text = list[0].name+" as the least skilled driver earned "+list[0].score+" points.";;
+        skilledText.text = list[list.Count - 1].name + " as the most skilled driver earned " +
+                           list[list.Count - 1].score + " points.";
+        unskilledText.text = list[0].name + " as the least skilled driver earned " + list[0].score + " points.";
+        ;
         list.Sort((x, y) =>
             x.speedScore.CompareTo(y.speedScore));
-        fastestText.text = list[list.Count-1].name+" as the fastest driver earned "+list[list.Count-1].score+" points.";;
-        slowestText.text = list[0].name+" as the slowest driver earned "+list[0].score+" points.";;
+        fastestText.text = list[list.Count - 1].name + " as the fastest driver earned " + list[list.Count - 1].score +
+                           " points.";
+        ;
+        slowestText.text = list[0].name + " as the slowest driver earned " + list[0].score + " points.";
+        ;
     }
 }
