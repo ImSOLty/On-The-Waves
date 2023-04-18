@@ -53,8 +53,13 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private Text skilledText, unskilledText, fastestText, slowestText, winnerName, winnerPoints;
 
+    private AudioManager _audioManager;
+
     void Start()
     {
+        _audioManager = FindObjectOfType<AudioManager>();
+        _audioManager.Play("Theme");
+        _audioManager.Play("Waves");
         if (!PlayerPrefs.HasKey("PreferredName") && !PlayerPrefs.HasKey("PreferredColor"))
         {
             foreach (Button b in nonInteractableButtons)
@@ -68,6 +73,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnCreateClick()
     {
+        _audioManager.Play("Button");
         playersAmount = 2;
         mainPanel.SetActive(false);
         createLobbyPanel.SetActive(true);
@@ -75,6 +81,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnJoinClick()
     {
+        _audioManager.Play("Button");
         _lobbyManager.JoinLobby(codeName.text);
     }
 
@@ -87,6 +94,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnCustomizeClick()
     {
+        _audioManager.Play("Button");
         mainPanel.SetActive(false);
         meshRenderer.gameObject.SetActive(true);
         customizePanel.SetActive(true);
@@ -94,6 +102,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnLeaveClick()
     {
+        _audioManager.Play("Button");
         ready = false;
         inLobbyPanel.SetActive(false);
         mainPanel.SetActive(true);
@@ -102,14 +111,17 @@ public class MainMenu : MonoBehaviour
 
     public void OnReadyClick()
     {
+        _audioManager.Play("Button");
         ready = !ready;
         _lobbyManager.UpdatePlayerReady();
     }
 
     public void OnCreateLobbyClick()
     {
+        _audioManager.Play("Button");
         if (lobbyName.text == "")
         {
+            FindObjectOfType<ErrorMessage>().Error("Lobby name is empty");
             return;
         }
         createLobbyPanel.SetActive(false);
@@ -120,10 +132,12 @@ public class MainMenu : MonoBehaviour
 
     public void OnSaveClick()
     {
+        _audioManager.Play("Button");
         playerName = playerName_field.text;
         if (playerName.Length == 0)
         {
             playerName = "";
+            FindObjectOfType<ErrorMessage>().Error("Player name should be entered");
             return;
         }
 
@@ -142,6 +156,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnBack(string panel)
     {
+        _audioManager.Play("Button");
         switch (panel)
         {
             case "customize":
@@ -163,6 +178,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnModel(bool left)
     {
+        _audioManager.Play("Spray");
         if (left)
         {
             chosenColor = chosenColor == 0 ? 7 : chosenColor - 1;
@@ -177,6 +193,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnMap(bool left)
     {
+        _audioManager.Play("Spray");
         if (left)
         {
             chosenTrack = chosenTrack == 0 ? 3 : chosenTrack - 1;
@@ -198,6 +215,7 @@ public class MainMenu : MonoBehaviour
                 if (!Regex.IsMatch(decodedText,
                     "((Straight|Corner)~(False|True)~(False|True)~(False|True)~(-?\\d+)~(-?\\d+)~(-?\\d+)~(False|True)\\*)+"))
                 {
+                    FindObjectOfType<ErrorMessage>().Error("No map code in clipboard found");
                     createLobbyButton.interactable = false;
                     customTrack = "";
                 }
@@ -208,6 +226,7 @@ public class MainMenu : MonoBehaviour
             }
             catch (FormatException)
             {
+                FindObjectOfType<ErrorMessage>().Error("No map code in clipboard found");
                 createLobbyButton.interactable = false;
                 customTrack = "";
             }
@@ -220,23 +239,27 @@ public class MainMenu : MonoBehaviour
 
     public void OnPlayersAmount(bool up)
     {
+        _audioManager.Play("Button");
         playersAmount = Mathf.Clamp(playersAmount + (up ? 1 : -1), 1, 8);
         playersAmountText.text = playersAmount + " players";
     }
 
     public void OnLapsAmount(bool up)
     {
+        _audioManager.Play("Button");
         lapsAmount = Mathf.Clamp(lapsAmount + (up ? 1 : -1), 1, 6);
         lapsAmountText.text = lapsAmount + " laps";
     }
 
     public void OnPlayClick()
     {
+        _audioManager.Play("Button");
         _lobbyManager.StartGame();
     }
     
     public void OnMenuClick()
     {
+        _audioManager.Play("Button");
         statsPanel.SetActive(false);
         mainPanel.SetActive(true);
     }
@@ -325,6 +348,7 @@ public class MainMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         if (list.Count <= 0)
         {
+            FindObjectOfType<ErrorMessage>().Error("No player data found");
             return;
         }
         playersAmount = 2;

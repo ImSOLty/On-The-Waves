@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using JetBrains.Annotations;
+using Unity.Netcode;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -42,7 +43,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    public Transform GenerateAndReturnStart(int trackId, string custom)
+    public Transform GenerateAndReturnStart(int trackId, string custom, bool isServer)
     {
         Tile[] tiles;
         switch (trackId)
@@ -92,11 +93,16 @@ public class MapGenerator : MonoBehaviour
                     ch.name = (checkpoints++).ToString();
                 }
             }
-
+            
             if (tile.type != Type.CORNER && tile.withCoin)
             {
-                GameObject c = Instantiate(coin, Vector3.zero, Quaternion.identity, t.transform);
-                c.transform.position = tile.position + new Vector3(Random.Range(-15, 15), 1, Random.Range(-25, 25));
+                coinsAmount++;
+                if (isServer)
+                {
+                    GameObject c = Instantiate(coin, Vector3.zero, Quaternion.identity, t.transform);
+                    c.transform.position = tile.position + new Vector3(Random.Range(-15, 15), 1, Random.Range(-25, 25));
+                    c.GetComponent<NetworkObject>().Spawn(true);
+                }
             }
 
             t.transform.parent = GameObject.Find("Track").transform;
@@ -111,6 +117,7 @@ public class MapGenerator : MonoBehaviour
     {
         checkpoints = 0;
         multiplicator = 0;
+        coinsAmount = 0;
         foreach (var tile in track)
         {
             Destroy(tile);

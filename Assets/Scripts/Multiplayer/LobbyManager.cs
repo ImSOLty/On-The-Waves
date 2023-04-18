@@ -106,6 +106,7 @@ public class LobbyManager : MonoBehaviour
         }
         catch (LobbyServiceException e)
         {
+            FindObjectOfType<ErrorMessage>().Error("Lobby can't be created");
             Debug.Log(e);
         }
     }
@@ -114,6 +115,7 @@ public class LobbyManager : MonoBehaviour
     {
         if (code == "")
         {
+            FindObjectOfType<ErrorMessage>().Error("Lobby code is empty");
             return;
         }
 
@@ -132,6 +134,7 @@ public class LobbyManager : MonoBehaviour
         }
         catch (LobbyServiceException e)
         {
+            FindObjectOfType<ErrorMessage>().Error("There is no lobby with such code");
             Debug.Log(e);
         }
     }
@@ -145,6 +148,7 @@ public class LobbyManager : MonoBehaviour
         }
         catch (LobbyServiceException e)
         {
+            FindObjectOfType<ErrorMessage>().Error("Player can't be removed");
             Debug.Log(e);
         }
 
@@ -254,6 +258,7 @@ public class LobbyManager : MonoBehaviour
             }
             catch (LobbyServiceException e)
             {
+                FindObjectOfType<ErrorMessage>().Error("Can't start the game");
                 Debug.Log(e);
             }
         }

@@ -13,6 +13,7 @@ public class NetworkControl : NetworkBehaviour
     private GameControl _gameControl;
     [HideInInspector] public Movement objectMovement;
     private PlayerProgress _progress;
+    private AudioManager _audioManager;
 
     private MainMenu _mainMenu;
 
@@ -23,6 +24,7 @@ public class NetworkControl : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        _audioManager = FindObjectOfType<AudioManager>();
         _mainMenu = FindObjectOfType<MainMenu>();
         _gameControl = FindObjectOfType<GameControl>();
         objectMovement = GetComponentInChildren<Movement>();
@@ -43,6 +45,7 @@ public class NetworkControl : NetworkBehaviour
     {
         yield return new WaitUntil(() => everyoneReady);
         Unfade();
+        _audioManager.Play("Starting");
         yield return new WaitForSeconds(1);
         if (IsOwnedByServer)
         {
@@ -79,7 +82,8 @@ public class NetworkControl : NetworkBehaviour
 
     void SetScene()
     {
-        start = FindObjectOfType<MapGenerator>().GenerateAndReturnStart(_mainMenu.chosenTrack, _mainMenu.customTrack);
+        start = FindObjectOfType<MapGenerator>()
+            .GenerateAndReturnStart(_mainMenu.chosenTrack, _mainMenu.customTrack, IsOwner && IsOwnedByServer);
 
         OtherSettings();
 
@@ -107,9 +111,9 @@ public class NetworkControl : NetworkBehaviour
         }
 
         _progress = objectCollider.AddComponent<PlayerProgress>();
-        _progress.SetInitial((NetworkObjectId-1), this, _gameControl, false);
+        _progress.SetInitial((NetworkObjectId - 1), this, _gameControl, false);
 
-        ImReadyServerRpc((NetworkObjectId-1), _mainMenu.playerName, _mainMenu.chosenColor);
+        ImReadyServerRpc((NetworkObjectId - 1), _mainMenu.playerName, _mainMenu.chosenColor);
     }
 
     void OtherSettings()
@@ -117,7 +121,7 @@ public class NetworkControl : NetworkBehaviour
         float startOffset = 17.5f;
         float additionalOffset = -5;
         transform.forward = start.forward;
-        transform.position = new Vector3(start.position.x + (startOffset + additionalOffset * (NetworkObjectId-1)), 0,
+        transform.position = new Vector3(start.position.x + (startOffset + additionalOffset * (NetworkObjectId - 1)), 0,
             start.position.z) - 10 * start.forward;
         objectCollider.SetActive(true);
     }
@@ -134,6 +138,7 @@ public class NetworkControl : NetworkBehaviour
     [ClientRpc]
     void GameStartedClientRpc()
     {
+        _audioManager.Play("Tick_GO");
         GameObject.Find("Countdown").GetComponent<Animator>().SetBool("On", false);
         foreach (var c in FindObjectsOfType<Movement>())
         {
@@ -144,6 +149,7 @@ public class NetworkControl : NetworkBehaviour
     [ClientRpc]
     void CountdownClientRpc(int time)
     {
+        _audioManager.Play("Tick_123");
         GameObject.Find("Countdown").GetComponent<Text>().text = time.ToString();
         GameObject.Find("Countdown").GetComponent<Animator>().SetBool("Up", true);
     }
@@ -159,13 +165,20 @@ public class NetworkControl : NetworkBehaviour
     void SetInitialDataClientRpc(ulong id, string username, int color)
     {
         _gameControl.PlayerDatas.Add(new GameControl.PlayerData(username, 0, _mainMenu.colors[color], id));
-        if (id == (NetworkObjectId-1))
+        if (id == (NetworkObjectId - 1))
         {
             objectMovement.GetComponentInChildren<Text>().text = username;
             objectMovement.model.GetComponent<MeshRenderer>().materials[1].color = _mainMenu.colors[color];
         }
     }
 
+    
+    [ServerRpc]
+    public void DestroyObjectServerRpc(ulong id)
+    {
+        Array.Find(FindObjectsOfType<NetworkObject>(), obj=>obj.NetworkObjectId==id).Despawn();
+    }
+    
 
     [ServerRpc]
     public void UpdateControlServerRpc(ulong id, int addScore, bool finished, string type)
@@ -176,18 +189,18 @@ public class NetworkControl : NetworkBehaviour
     [ClientRpc]
     void UpdateControlClientRpc(ulong id, int addScore, bool finished, string type)
     {
-        if (finished && (NetworkObjectId-1) == id && _progress)
+        if (finished && (NetworkObjectId - 1) == id && _progress)
         {
             _progress.enabled = false;
             _gameControl.Ghost(objectMovement.model.GetComponent<MeshRenderer>());
         }
-
+ 
         if (_gameControl.UpdateScores(id, addScore, finished, type) && _progress)
         {
             ImFinishedServerRpc();
         }
     }
-    
+
     [ServerRpc]
     public void ImFinishedServerRpc()
     {
@@ -203,6 +216,7 @@ public class NetworkControl : NetworkBehaviour
         {
             NetworkManager.DisconnectClient(client);
         }
+
         NetworkManager.Shutdown();
     }
 
@@ -216,7 +230,7 @@ public class NetworkControl : NetworkBehaviour
 
         return count;
     }
-    
+
     public override void OnNetworkDespawn()
     {
         ClearEverything();
@@ -226,9 +240,9 @@ public class NetworkControl : NetworkBehaviour
     {
         FindObjectOfType<MapGenerator>().ClearInfo();
         FindObjectOfType<LobbyManager>().ClearInfo();
-        
+
         _mainMenu.ClearInfoAndShowStats(_gameControl.PlayerDatas);
-        
+
         _gameControl.ClearInfo();
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,6 +57,7 @@ public class PlayerProgress : MonoBehaviour
                 if (checkpoint == chNumber)
                 {
                     checkpoint++;
+                    if (!ml) FindObjectOfType<AudioManager>().Play("Points");
                     Reward(2, "Checkpoint!");
                 }
                 else
@@ -73,18 +75,21 @@ public class PlayerProgress : MonoBehaviour
                             break;
                         }
 
+                        if (!ml) FindObjectOfType<AudioManager>().Play("Points");
                         Reward(3, "Finished Lap!");
                     }
                 }
 
                 break;
             case "ActualCorner":
+                if (!ml) FindObjectOfType<AudioManager>().Play("Points");
                 Vector3 checkpointForward = other.transform.forward;
                 float directionDot = Vector3.Dot(transform.parent.Find("Control").forward, checkpointForward);
                 Reward(directionDot, "Took A Corner!", "skill");
                 break;
             case "Coin":
-                Destroy(other.gameObject);
+                if (!ml) FindObjectOfType<AudioManager>().Play("Points");
+                NetworkControl.DestroyObjectServerRpc(other.GetComponent<NetworkObject>().NetworkObjectId);
                 Reward(CoinMultiplicator, "COIN!", "coins");
                 break;
             default:
@@ -101,6 +106,7 @@ public class PlayerProgress : MonoBehaviour
 
         if (other.gameObject.CompareTag("Border"))
         {
+            FindObjectOfType<AudioManager>().Play("Crush");
             Reward(-0.5f, "Touched The Border!", "skill");
         }
     }
