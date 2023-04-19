@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f81134b3b5154948b7e0d4293dfc1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
   sphere: {fileID: 2189286637257408581}
   model: {fileID: 2189286636638010932}
   upmodel: {fileID: 8750664182452277714}
@@ -204,7 +205,7 @@ MonoBehaviour:
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: efe1797b762bccd40baca8ff56b3945c, type: 3}
-  m_InferenceDevice: 1
+  m_InferenceDevice: 3
   m_BehaviorType: 2
   m_BehaviorName: boat
   TeamId: 0
@@ -245,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 1
+  DecisionPeriod: 3
   TakeActionsBetweenDecisions: 1
 --- !u!114 &3248829427427088844
 MonoBehaviour:
@@ -345,7 +346,7 @@ ParticleSystem:
   lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
-  cullingMode: 0
+  cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
@@ -5300,7 +5301,7 @@ ParticleSystem:
   lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
-  cullingMode: 0
+  cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0

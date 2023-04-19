@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject psBubbles;
     void Start()
     {
-        Generate();
+        Application.targetFrameRate = 300;
+        //Generate();
     }
 
     void Generate()

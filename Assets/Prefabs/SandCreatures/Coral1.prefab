@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2246930249608481788
 Transform:
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1775555514213506023}
   m_Father: {fileID: 0}
@@ -64,6 +65,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 2246930249608481788}
     m_Modifications:
     - target: {fileID: -9009877836800665371, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
@@ -138,6 +140,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4002675339220234019, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -3014180598259798509, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -174,10 +180,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coral1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4535362532718101923, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 487d95e047ff8bc4bbb2fc7a88255f07, type: 2}
+    - target: {fileID: 4595675355983017076, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537775407602753993, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8336595824113633483, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -211,20 +229,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 487d95e047ff8bc4bbb2fc7a88255f07, type: 2}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
 --- !u!4 &1775555514213506023 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
   m_PrefabInstance: {fileID: 2246930249710566412}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &7713434844825898819 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 8369116613691323215, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
-  m_PrefabInstance: {fileID: 2246930249710566412}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &2440505807416375727 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 4535362532718101923, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
+  m_PrefabInstance: {fileID: 2246930249710566412}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &7713434844825898819 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8369116613691323215, guid: 3fcdd5f83b6c4aa429231fa69965e390, type: 3}
   m_PrefabInstance: {fileID: 2246930249710566412}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &9119194704369647035 stripped

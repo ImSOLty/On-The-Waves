@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     public int chosenTrack = 0;
     public string customTrack = "";
 
+    [SerializeField] private GameObject joystickObject;
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] private Image trackImage, lobbyTrackImage;
 
@@ -346,6 +347,15 @@ public class MainMenu : MonoBehaviour
 
     public void HideMenu()
     {
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            joystickObject.SetActive(true);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        
         foreach (GameObject panel in new[]
             {mainPanel, createLobbyPanel, inLobbyPanel, customizePanel, menuCamera, meshRenderer.gameObject})
         {
@@ -358,7 +368,14 @@ public class MainMenu : MonoBehaviour
 
     public void ClearInfoAndShowStats(List<GameControl.PlayerData> list)
     {
-        Cursor.lockState = CursorLockMode.None;
+        if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            joystickObject.SetActive(false);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
         if (list.Count <= 0)
         {
             FindObjectOfType<ErrorMessage>().Error("No player data found");

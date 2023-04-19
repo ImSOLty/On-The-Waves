@@ -15,7 +15,7 @@ GameObject:
   m_TagString: ActualCheckpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1102151205824450058
 Transform:
@@ -65,7 +65,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1102151206525942298
 Transform:
@@ -93,7 +93,7 @@ ParticleSystem:
   lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
-  cullingMode: 0
+  cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
@@ -5003,7 +5003,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1102151206535330016
 Transform:
@@ -5031,7 +5031,7 @@ ParticleSystem:
   lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
-  cullingMode: 0
+  cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
@@ -9988,10 +9988,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8256134651489076907, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cb5ccafb251dc2f498974ce24ddea868, type: 2}
+    - target: {fileID: -5568371526223589888, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -5477749408508380018, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -10080,9 +10088,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: cb5ccafb251dc2f498974ce24ddea868, type: 2}
+    - target: {fileID: -900840116002235059, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
       propertyPath: m_Name
       value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6609493762104327279, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
       propertyPath: m_LocalScale.x
@@ -10124,6 +10140,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e223e8d5dcc2e4d45ad37e032c455282, type: 2}
+    - target: {fileID: 8513859187771203891, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8560426426855154222, guid: 00e4304228f90bf4fb3c3a3f09e2a8fb, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

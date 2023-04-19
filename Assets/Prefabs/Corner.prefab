@@ -921,6 +921,10 @@ PrefabInstance:
       value: Corner_border_mesh
       objectReference: {fileID: 0}
     - target: {fileID: 3219882101630006985, guid: 96e50d8e76a5e1e4e8410420ac7f63d3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219882101630006985, guid: 96e50d8e76a5e1e4e8410420ac7f63d3, type: 3}
       propertyPath: m_CastShadows
       value: 1
       objectReference: {fileID: 0}
@@ -951,6 +955,10 @@ PrefabInstance:
     - target: {fileID: 8273688025888378429, guid: 96e50d8e76a5e1e4e8410420ac7f63d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8521902485874960664, guid: 96e50d8e76a5e1e4e8410420ac7f63d3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8521902485874960664, guid: 96e50d8e76a5e1e4e8410420ac7f63d3, type: 3}
       propertyPath: m_CastShadows

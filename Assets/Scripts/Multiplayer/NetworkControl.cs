@@ -23,7 +23,6 @@ public class NetworkControl : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         _audioManager = FindObjectOfType<AudioManager>();
         _mainMenu = FindObjectOfType<MainMenu>();
         _gameControl = FindObjectOfType<GameControl>();

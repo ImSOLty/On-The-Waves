@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4483819515400865457
 Transform:
@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4157670639009951681}
   m_Father: {fileID: 0}
@@ -64,6 +65,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 4483819515400865457}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 9362462f063d05c4f9928223bdcd2360, type: 3}
@@ -114,15 +116,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9362462f063d05c4f9928223bdcd2360, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9362462f063d05c4f9928223bdcd2360, type: 3}
---- !u!4 &4157670639009951681 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9362462f063d05c4f9928223bdcd2360, type: 3}
-  m_PrefabInstance: {fileID: 4483819514219137066}
-  m_PrefabAsset: {fileID: 0}
 --- !u!23 &3024219609975592110 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 9362462f063d05c4f9928223bdcd2360, type: 3}
+  m_PrefabInstance: {fileID: 4483819514219137066}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4157670639009951681 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9362462f063d05c4f9928223bdcd2360, type: 3}
   m_PrefabInstance: {fileID: 4483819514219137066}
   m_PrefabAsset: {fileID: 0}

@@ -5,31 +5,35 @@ using UnityEngine.Rendering.Universal;
 
 public class Movement : MonoBehaviour
 {
-    [Header("Components references")]
-    [SerializeField] public Rigidbody sphere;
+    [SerializeField] private FloatingJoystick joystick;
+
+    [Header("Components references")] [SerializeField]
+    public Rigidbody sphere;
+
     [SerializeField] public Transform model;
     [SerializeField] private Transform upmodel;
     [SerializeField] private Transform boatFoot;
     [SerializeField] private ParticleSystem engineParticlesHead;
 
-    [Header("Player's characteristics")]
-    [SerializeField] public float acceleration;
+    [Header("Player's characteristics")] [SerializeField]
+    public float acceleration;
+
     [SerializeField] public float steeringDefault;
     [SerializeField] public float steeringDrift;
     [SerializeField] private float driftDecrease = 0.2f;
 
     private float speed, rotate, steering, leftRight;
     private bool drift;
-    [Header("Is an object ml-driven?")]
-    public bool ml;
+    [Header("Is an object ml-driven?")] public bool ml;
 
     [HideInInspector] public float currentRotate, currentSpeed;
     [HideInInspector] public bool isOwner, gameStarted;
-    
+
     private LensDistortion _lensDistortion;
 
     public void SetCamera()
     {
+        joystick = FindObjectOfType<FloatingJoystick>();
         CinemachineFreeLook freeLook = FindObjectOfType<CinemachineFreeLook>();
         freeLook.LookAt = sphere.transform;
         freeLook.Follow = transform;
@@ -58,10 +62,20 @@ public class Movement : MonoBehaviour
             Time.deltaTime * 2);
 
         bool grounded = Physics.CheckSphere(boatFoot.position, 1, 1 << LayerMask.NameToLayer("Ground"));
-        bool space = !grounded || Input.GetAxisRaw("Jump") > 0;
 
         if (!ml && isOwner)
-            SetInput(Input.GetAxisRaw("Vertical") > 0, Input.GetAxisRaw("Horizontal"), space);
+            if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+                bool space = !grounded || Input.touchCount > 1;
+                //
+                SetInput(joystick.Vertical > 0, joystick.Horizontal < -0.5f ? -1 : joystick.Horizontal > 0.5f ? 1 : 0,
+                    space);
+            }
+            else
+            {
+                bool space = !grounded || Input.GetAxisRaw("Jump") > 0;
+                SetInput(Input.GetAxisRaw("Vertical") > 0, Input.GetAxisRaw("Horizontal"), space);
+            }
     }
 
     public void SetInput(bool v, float h, bool j)
