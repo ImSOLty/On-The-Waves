@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
     [Header("Is an object ml-driven?")] public bool ml;
 
     [HideInInspector] public float currentRotate, currentSpeed;
-    [HideInInspector] public bool isOwner, gameStarted;
+    public bool isOwner, gameStarted;
 
     private LensDistortion _lensDistortion;
 

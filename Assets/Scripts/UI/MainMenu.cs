@@ -227,7 +227,7 @@ public class MainMenu : MonoBehaviour
                 byte[] decodedBytes = Convert.FromBase64String(clipBoard);
                 string decodedText = Encoding.UTF8.GetString(decodedBytes);
                 if (!Regex.IsMatch(decodedText,
-                    "((Straight|Corner)~(False|True)~(False|True)~(False|True)~(-?\\d+)~(-?\\d+)~(-?\\d+)~(False|True)\\*)+"))
+                    "((Straight|Corner)~(False|True)~(False|True)~False~(-?\\d+)~(-?\\d+)~(-?\\d+)~(False|True)\\*)+"))
                 {
                     FindObjectOfType<ErrorMessage>().Error("No map code in clipboard found");
                     createLobbyButton.interactable = false;

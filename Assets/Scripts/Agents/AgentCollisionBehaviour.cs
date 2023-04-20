@@ -18,6 +18,7 @@ public class AgentCollisionBehaviour : MonoBehaviour
             _agent.WallHit();
         }
     }
+
     // private void OnCollisionStay(Collision other)
     // {
     //     if (other.gameObject.CompareTag("Border"))

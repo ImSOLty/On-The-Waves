@@ -4940,7 +4940,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3551822084504385266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4961,19 +4961,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f81134b3b5154948b7e0d4293dfc1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
   sphere: {fileID: 3551822084995615239}
   model: {fileID: 3551822084514559094}
   upmodel: {fileID: 6222823991002569616}
   boatFoot: {fileID: 3909825396199438656}
+  engineParticlesHead: {fileID: 3551822084769225235}
   acceleration: 60
   steeringDefault: 250
   steeringDrift: 1000
   driftDecrease: 0.5
+  ml: 1
   currentRotate: 0
   currentSpeed: 0
-  ml: 1
-  isOwner: 0
-  engineParticlesHead: {fileID: 3551822084769225235}
+  isOwner: 1
+  gameStarted: 1
 --- !u!114 &2785335731767900171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5023,8 +5025,8 @@ MonoBehaviour:
   MaxStep: 0
   colliderT: {fileID: 3551822084995615236}
   startForward: {fileID: 1987648845036934690}
-  startPosition: {x: 0, y: 1.5, z: 0}
   learning: 1
+  _checkPointControl: {fileID: 0}
   movement: {fileID: 3551822084504385268}
 --- !u!114 &5812338747956297705
 MonoBehaviour:

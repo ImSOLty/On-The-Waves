@@ -9,12 +9,12 @@ using Random = UnityEngine.Random;
 
 public class BoatAgent : Agent
 {
-    private CheckPointForAgentsControl _checkPointControl;
     [SerializeField] private Transform colliderT;
     [SerializeField] private Transform startForward;
-    [SerializeField] private Vector3 startPosition;
-    
+
     [SerializeField] private bool learning=true;
+    [SerializeField] private CheckPointForAgentsControl _checkPointControl;
+    private int Multiplicator = 50;
 
     private float start = 0;
 
@@ -30,8 +30,6 @@ public class BoatAgent : Agent
     private void Start()
 
     {
-        //Time.timeScale = 8;
-        _checkPointControl = FindObjectOfType<CheckPointForAgentsControl>();
         if (!learning)
             return;
         _checkPointControl.onCorrectCheckPoint += onCarCorrectCheckpoint;
@@ -44,9 +42,7 @@ public class BoatAgent : Agent
         if (!e.Name.Equals(colliderT.tag))
             return;
         float reward = Time.unscaledTime - start;
-        AddReward(100/reward);
-        Debug.Log(100/reward);
-        _checkPointControl.CommResult(GetCumulativeReward());
+        AddReward(Multiplicator);
         EndEpisode();
     }
 
@@ -54,8 +50,7 @@ public class BoatAgent : Agent
     {
         if (!e.Name.Equals(colliderT.tag))
             return;
-        AddReward(-1f);
-        //_checkPointControl.CommResult(GetCumulativeReward());
+        AddReward(0.4f*Multiplicator);
         EndEpisode();
     }
 
@@ -65,8 +60,8 @@ public class BoatAgent : Agent
             return;
         Vector3 checkpointForward = _checkPointControl.GetNextCheckpoint(colliderT.tag).transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
-        AddReward(directionDot);
-        // AddReward(1f);
+        AddReward(directionDot*Multiplicator);
+        //AddReward(0.4f*Multiplicator);
     }
 
     public override void OnEpisodeBegin()
@@ -80,10 +75,10 @@ public class BoatAgent : Agent
         // {
         //     x = 0;
         // }
-        colliderT.localPosition = startPosition;
+        colliderT.localPosition = new Vector3(Random.Range(0,17.5f),1.5f,0);
         transform.forward = startForward.forward;
         _checkPointControl.ResetProp(colliderT.tag);
-        
+        //_checkPointControl.UpdateCoins();
         start = Time.unscaledTime;
     }
 
@@ -174,15 +169,21 @@ public class BoatAgent : Agent
     {
         if (!learning)
             return;
-        AddReward(-5f);
-        //_checkPointControl.CommResult(GetCumulativeReward());
+        AddReward(-0.5f*Multiplicator);
         EndEpisode();
     }
+    
+    // public void CoinCollect()
+    // {
+    //     if (!learning)
+    //         return;
+    //     AddReward(10f*Multiplicator);
+    // }
 
     public void WallSlide()
     {
         if (!learning)
             return;
-        AddReward(-0.1f);
+        AddReward(-0.1f*Multiplicator);
     }
 }

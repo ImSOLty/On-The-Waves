@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BoatEventArgs : EventArgs
 {
@@ -17,6 +18,10 @@ public delegate void CustomEventHandler(object sender, BoatEventArgs args);
 
 public class CheckPointForAgentsControl : MonoBehaviour
 {
+    // [SerializeField] private GameObject CoinPrefab;
+    // private List<GameObject> coins = new List<GameObject>();
+    // [SerializeField] private GameObject[] straights;
+    
     public CustomEventHandler onCorrectCheckPoint, onIncorrectCheckPoint, onFinish;
     [SerializeField] private List<CheckpointForAgents> checkpoints = new List<CheckpointForAgents>();
     public GameObject startCheckpoint;
@@ -29,25 +34,15 @@ public class CheckPointForAgentsControl : MonoBehaviour
     private float start = 0;
     private int finished = 0;
 
-    private Dictionary<string, int> cur = new Dictionary<string, int>()
-    {
-        {"Boat 1", 1},
-        {"Boat 2", 1},
-        {"Boat 3", 1},
-        {"Boat 4", 1},
-        {"Boat 5", 1},
-        {"Boat 6", 1},
-        {"Boat 7", 1},
-        {"Boat 8", 1},
-    };
+    private int cur = 1;
 
     private void Start()
     {
-        // start = Time.unscaledTime;
+        start = Time.unscaledTime;
         // onCorrectCheckPoint += onCorrectCheckPointDebug;
         // onIncorrectCheckPoint += onIncorrectCheckPointDebug;
         // onFinish += onFinished;
-        // GetCheckPoints();
+        GetCheckPoints();
     }
 
     public void GetCheckPoints()
@@ -84,14 +79,14 @@ public class CheckPointForAgentsControl : MonoBehaviour
 
     public CheckpointForAgents GetNextCheckpoint(string boat)
     {
-        return checkpoints[cur[boat] - 1];
+        return checkpoints[cur - 1];
     }
 
     public void CheckCorrect(CheckpointForAgents c, Collider boatCollider)
     {
         string boat = boatCollider.tag;
 
-        if (c.number == cur[boat])
+        if (c.number == cur)
         {
             if (c.number == checkpoints.Count)
             {
@@ -99,20 +94,20 @@ public class CheckPointForAgentsControl : MonoBehaviour
             }
             else
             {
-                //onCorrectCheckPoint.Invoke(this, new BoatEventArgs(boat));
-                cur[boat]++;
+                onCorrectCheckPoint.Invoke(this, new BoatEventArgs(boat));
+                cur++;
             }
         }
 
-        if (c.number > cur[boat] || c.number < cur[boat] - 1)
+        if (c.number > cur || c.number < cur - 1)
         {
-            //onIncorrectCheckPoint.Invoke(this, new BoatEventArgs(boat));
+            onIncorrectCheckPoint.Invoke(this, new BoatEventArgs(boat));
         }
     }
 
     public void ResetProp(string boat)
     {
-        cur[boat] = 1;
+        cur = 1;
     }
 
     void onCorrectCheckPointDebug(object sender, BoatEventArgs e)
@@ -129,6 +124,25 @@ public class CheckPointForAgentsControl : MonoBehaviour
     {
         //Debug.Log(e.Name + " Finished");
     }
+
+    // public void UpdateCoins()
+    // {
+    //     foreach (var c in coins)
+    //     {
+    //         Destroy(c);
+    //     }
+    //     coins.Clear();
+    //     int i = Random.Range(0, 3);
+    //     int j = Random.Range(0, 3);
+    //     while (j == i)
+    //     {
+    //         j = Random.Range(0, 3);
+    //     }
+    //     coins.Add(Instantiate(CoinPrefab, Vector3.zero, Quaternion.identity, straights[i].transform));
+    //     coins[0].transform.localPosition = new Vector3(Random.Range(-15, 15), 1, Random.Range(-25, 25));
+    //     coins.Add(Instantiate(CoinPrefab, Vector3.zero, Quaternion.identity, straights[j].transform));
+    //     coins[1].transform.localPosition = new Vector3(Random.Range(-15, 15), 1, Random.Range(-25, 25));
+    // }
 
     public void CommResult(float comm)
     {

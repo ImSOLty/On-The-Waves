@@ -1,0 +1,56 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 499930,
+                "file_path": "results\\skillBoat\\boat\\boat-499930.onnx",
+                "reward": 681.3375538259313,
+                "creation_time": 1681993965.904104,
+                "auxillary_file_paths": [
+                    "results\\skillBoat\\boat\\boat-499930.pt"
+                ]
+            },
+            {
+                "steps": 511683,
+                "file_path": "results\\skillBoat\\boat\\boat-511683.onnx",
+                "reward": 764.0370690962848,
+                "creation_time": 1681994005.0529659,
+                "auxillary_file_paths": [
+                    "results\\skillBoat\\boat\\boat-511683.pt"
+                ]
+            },
+            {
+                "steps": 999913,
+                "file_path": "results\\skillBoat\\boat\\boat-999913.onnx",
+                "reward": 2113.838668823242,
+                "creation_time": 1681994600.9590533,
+                "auxillary_file_paths": [
+                    "results\\skillBoat\\boat\\boat-999913.pt"
+                ]
+            },
+            {
+                "steps": 1421256,
+                "file_path": "results\\skillBoat\\boat\\boat-1421256.onnx",
+                "reward": 2073.0507062276206,
+                "creation_time": 1681995085.2961838,
+                "auxillary_file_paths": [
+                    "results\\skillBoat\\boat\\boat-1421256.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1421256,
+            "file_path": "results\\skillBoat\\boat.onnx",
+            "reward": 2073.0507062276206,
+            "creation_time": 1681995085.2961838,
+            "auxillary_file_paths": [
+                "results\\skillBoat\\boat\\boat-1421256.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}
