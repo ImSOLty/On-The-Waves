@@ -34,7 +34,41 @@ public class CheckPointForAgentsControl : MonoBehaviour
     private float start = 0;
     private int finished = 0;
 
-    private int cur = 1;
+    private Dictionary<string, int> cur = new Dictionary<string, int>()
+    {
+        {"Boat 1", 1},
+        {"Boat 2", 1},
+        {"Boat 3", 1},
+        {"Boat 4", 1},
+        {"Boat 5", 1},
+        {"Boat 6", 1},
+        {"Boat 7", 1},
+        {"Boat 8", 1},
+        {"Boat 9", 1},
+        {"Boat 10", 1},
+        {"Boat 11", 1},
+        {"Boat 12", 1},
+        {"Boat 13", 1},
+        {"Boat 14", 1},
+        {"Boat 15", 1},
+        {"Boat 16", 1},
+        {"Boat 17", 1},
+        {"Boat 18", 1},
+        {"Boat 19", 1},
+        {"Boat 20", 1},
+        {"Boat 21", 1},
+        {"Boat 22", 1},
+        {"Boat 23", 1},
+        {"Boat 24", 1},
+        {"Boat 25", 1},
+        {"Boat 26", 1},
+        {"Boat 27", 1},
+        {"Boat 28", 1},
+        {"Boat 29", 1},
+        {"Boat 30", 1},
+        {"Boat 31", 1},
+        {"Boat 32", 1},
+    };
 
     private void Start()
     {
@@ -79,14 +113,14 @@ public class CheckPointForAgentsControl : MonoBehaviour
 
     public CheckpointForAgents GetNextCheckpoint(string boat)
     {
-        return checkpoints[cur - 1];
+        return checkpoints[cur[boat] - 1];
     }
 
     public void CheckCorrect(CheckpointForAgents c, Collider boatCollider)
     {
-        string boat = boatCollider.tag;
+        string boat = boatCollider.transform.parent.name;
 
-        if (c.number == cur)
+        if (c.number == cur[boat])
         {
             if (c.number == checkpoints.Count)
             {
@@ -95,11 +129,11 @@ public class CheckPointForAgentsControl : MonoBehaviour
             else
             {
                 onCorrectCheckPoint.Invoke(this, new BoatEventArgs(boat));
-                cur++;
+                cur[boat]++;
             }
         }
 
-        if (c.number > cur || c.number < cur - 1)
+        if (c.number > cur[boat] || c.number < cur[boat] - 1)
         {
             onIncorrectCheckPoint.Invoke(this, new BoatEventArgs(boat));
         }
@@ -107,7 +141,7 @@ public class CheckPointForAgentsControl : MonoBehaviour
 
     public void ResetProp(string boat)
     {
-        cur = 1;
+        cur[boat] = 1;
     }
 
     void onCorrectCheckPointDebug(object sender, BoatEventArgs e)

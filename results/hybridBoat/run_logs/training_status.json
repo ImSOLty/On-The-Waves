@@ -1,0 +1,65 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 4500068,
+                "file_path": "results\\hybridBoat\\boat\\boat-4500068.onnx",
+                "reward": 12624.203643798828,
+                "creation_time": 1682070169.896217,
+                "auxillary_file_paths": [
+                    "results\\hybridBoat\\boat\\boat-4500068.pt"
+                ]
+            },
+            {
+                "steps": 4999951,
+                "file_path": "results\\hybridBoat\\boat\\boat-4999951.onnx",
+                "reward": 12668.56999206543,
+                "creation_time": 1682070476.2224689,
+                "auxillary_file_paths": [
+                    "results\\hybridBoat\\boat\\boat-4999951.pt"
+                ]
+            },
+            {
+                "steps": 5499994,
+                "file_path": "results\\hybridBoat\\boat\\boat-5499994.onnx",
+                "reward": null,
+                "creation_time": 1682070752.3000605,
+                "auxillary_file_paths": [
+                    "results\\hybridBoat\\boat\\boat-5499994.pt"
+                ]
+            },
+            {
+                "steps": 5999911,
+                "file_path": "results\\hybridBoat\\boat\\boat-5999911.onnx",
+                "reward": null,
+                "creation_time": 1682071028.405423,
+                "auxillary_file_paths": [
+                    "results\\hybridBoat\\boat\\boat-5999911.pt"
+                ]
+            },
+            {
+                "steps": 6000039,
+                "file_path": "results\\hybridBoat\\boat\\boat-6000039.onnx",
+                "reward": null,
+                "creation_time": 1682071028.5047555,
+                "auxillary_file_paths": [
+                    "results\\hybridBoat\\boat\\boat-6000039.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6000039,
+            "file_path": "results\\hybridBoat\\boat.onnx",
+            "reward": null,
+            "creation_time": 1682071028.5047555,
+            "auxillary_file_paths": [
+                "results\\hybridBoat\\boat\\boat-6000039.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}

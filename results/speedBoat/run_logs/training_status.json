@@ -1,0 +1,65 @@
+{
+    "boat": {
+        "checkpoints": [
+            {
+                "steps": 4500190,
+                "file_path": "results\\speedBoat\\boat\\boat-4500190.onnx",
+                "reward": 8066.228240966797,
+                "creation_time": 1682065377.6938095,
+                "auxillary_file_paths": [
+                    "results\\speedBoat\\boat\\boat-4500190.pt"
+                ]
+            },
+            {
+                "steps": 4999909,
+                "file_path": "results\\speedBoat\\boat\\boat-4999909.onnx",
+                "reward": 8777.049743652344,
+                "creation_time": 1682065686.957786,
+                "auxillary_file_paths": [
+                    "results\\speedBoat\\boat\\boat-4999909.pt"
+                ]
+            },
+            {
+                "steps": 5499888,
+                "file_path": "results\\speedBoat\\boat\\boat-5499888.onnx",
+                "reward": 5293.705594062805,
+                "creation_time": 1682065959.8514342,
+                "auxillary_file_paths": [
+                    "results\\speedBoat\\boat\\boat-5499888.pt"
+                ]
+            },
+            {
+                "steps": 5999977,
+                "file_path": "results\\speedBoat\\boat\\boat-5999977.onnx",
+                "reward": 8330.624331156412,
+                "creation_time": 1682066234.4568024,
+                "auxillary_file_paths": [
+                    "results\\speedBoat\\boat\\boat-5999977.pt"
+                ]
+            },
+            {
+                "steps": 6000061,
+                "file_path": "results\\speedBoat\\boat\\boat-6000061.onnx",
+                "reward": 8429.56858253479,
+                "creation_time": 1682066234.5470164,
+                "auxillary_file_paths": [
+                    "results\\speedBoat\\boat\\boat-6000061.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 6000061,
+            "file_path": "results\\speedBoat\\boat.onnx",
+            "reward": 8429.56858253479,
+            "creation_time": 1682066234.5470164,
+            "auxillary_file_paths": [
+                "results\\speedBoat\\boat\\boat-6000061.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.29.0",
+        "torch_version": "1.13.1+cu117"
+    }
+}

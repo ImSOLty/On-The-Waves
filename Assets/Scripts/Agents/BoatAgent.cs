@@ -39,7 +39,9 @@ public class BoatAgent : Agent
 
     private void onFinished(object sender, BoatEventArgs e)
     {
-        if (!e.Name.Equals(colliderT.tag))
+        if (!learning)
+            return;
+        if (!e.Name.Equals(colliderT.parent.name))
             return;
         float reward = Time.unscaledTime - start;
         AddReward(Multiplicator);
@@ -48,20 +50,27 @@ public class BoatAgent : Agent
 
     private void onCarWrongCheckpoint(object sender, BoatEventArgs e)
     {
-        if (!e.Name.Equals(colliderT.tag))
+        if (!learning)
             return;
-        AddReward(0.4f*Multiplicator);
+        if (!e.Name.Equals(colliderT.parent.name))
+            return;
+        AddReward(-0.4f*Multiplicator);
         EndEpisode();
     }
 
     private void onCarCorrectCheckpoint(object sender, BoatEventArgs e)
     {
-        if (!e.Name.Equals(colliderT.tag))
+        if (!learning)
             return;
-        Vector3 checkpointForward = _checkPointControl.GetNextCheckpoint(colliderT.tag).transform.forward;
+        if (!e.Name.Equals(colliderT.parent.name))
+            return;
+        Vector3 checkpointForward = _checkPointControl.GetNextCheckpoint(colliderT.parent.name).transform.forward;
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);
-        AddReward(directionDot*Multiplicator);
-        //AddReward(0.4f*Multiplicator);
+        AddReward(directionDot*Multiplicator/2);
+
+        float reach = Time.unscaledTime;
+        AddReward(Multiplicator/((reach-start)*20));
+        start = reach;
     }
 
     public override void OnEpisodeBegin()
@@ -77,7 +86,7 @@ public class BoatAgent : Agent
         // }
         colliderT.localPosition = new Vector3(Random.Range(0,17.5f),1.5f,0);
         transform.forward = startForward.forward;
-        _checkPointControl.ResetProp(colliderT.tag);
+        _checkPointControl.ResetProp(colliderT.parent.name);
         //_checkPointControl.UpdateCoins();
         start = Time.unscaledTime;
     }
@@ -87,8 +96,8 @@ public class BoatAgent : Agent
         Vector3 checkpointForward = transform.forward;
         if (learning)
         {
-            if (_checkPointControl.GetNextCheckpoint(colliderT.tag))
-                checkpointForward = _checkPointControl.GetNextCheckpoint(colliderT.tag).transform.forward;
+            if (_checkPointControl.GetNextCheckpoint(colliderT.parent.name))
+                checkpointForward = _checkPointControl.GetNextCheckpoint(colliderT.parent.name).transform.forward;
         }
 
         float directionDot = Vector3.Dot(transform.forward, checkpointForward);

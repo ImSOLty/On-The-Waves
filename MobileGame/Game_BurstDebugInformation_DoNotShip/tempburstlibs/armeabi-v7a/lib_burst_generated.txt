@@ -110,11 +110,6 @@ Library: lib_burst_generated
 --compilation-defines=NET_STANDARD_2_1
 --compilation-defines=NETSTANDARD
 --compilation-defines=NETSTANDARD2_1
---compilation-defines=DEVELOPMENT_BUILD
---compilation-defines=ENABLE_PROFILER
---compilation-defines=DEBUG
---compilation-defines=TRACE
---compilation-defines=UNITY_ASSERTIONS
 --compilation-defines=UNITY_PRO_LICENSE
 --compilation-defines=ENABLE_CUSTOM_RENDER_TEXTURE
 --compilation-defines=ENABLE_DIRECTOR
@@ -157,7 +152,6 @@ Library: lib_burst_generated
 --compilation-defines=COM_UNITY_MODULES_PHYSICS2D
 --compilation-defines=UNITY_NETCODE_GAMEOBJECTS_1_0
 --generate-link-xml=Temp\burst.link.xml
---debug=Full
 --output=C:\VKR\On-The-Waves\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
 --root-assembly=C:\VKR\On-The-Waves\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=C:\VKR\On-The-Waves\Temp\StagingArea\Data\Managed\Unity.ML-Agents.dll
@@ -556,11 +550,6 @@ Library: lib_burst_generated
 --compilation-defines=NET_STANDARD_2_1
 --compilation-defines=NETSTANDARD
 --compilation-defines=NETSTANDARD2_1
---compilation-defines=DEVELOPMENT_BUILD
---compilation-defines=ENABLE_PROFILER
---compilation-defines=DEBUG
---compilation-defines=TRACE
---compilation-defines=UNITY_ASSERTIONS
 --compilation-defines=UNITY_PRO_LICENSE
 --compilation-defines=ENABLE_CUSTOM_RENDER_TEXTURE
 --compilation-defines=ENABLE_DIRECTOR
@@ -603,7 +592,6 @@ Library: lib_burst_generated
 --compilation-defines=COM_UNITY_MODULES_PHYSICS2D
 --compilation-defines=UNITY_NETCODE_GAMEOBJECTS_1_0
 --generate-link-xml=Temp\burst.link.xml
---debug=Full
 --output=C:\VKR\On-The-Waves\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
 --root-assembly=C:\VKR\On-The-Waves\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=C:\VKR\On-The-Waves\Temp\StagingArea\Data\Managed\Unity.ML-Agents.dll

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Linq;
+using Unity.Barracuda;
+using Unity.MLAgents.Policies;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +11,7 @@ using Random = UnityEngine.Random;
 public class NetworkControl : NetworkBehaviour
 {
     [SerializeField] private Transform mlPrefab;
+    [SerializeField] private NNModel[] models;
     [SerializeField] private GameObject objectCollider;
     private GameControl _gameControl;
     [HideInInspector] public Movement objectMovement;
@@ -58,7 +61,8 @@ public class NetworkControl : NetworkBehaviour
             foreach (var c in FindObjectsOfType<BoatAgent>())
             {
                 c.enabled = true;
-                c.GetComponent<Movement>().acceleration = Random.Range(60, 100);
+                c.GetComponent<BehaviorParameters>().Model = models[Random.Range(0,3)];
+                c.GetComponent<Movement>().acceleration = Random.Range(40, 60);
             }
         }
     }

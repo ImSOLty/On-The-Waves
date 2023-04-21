@@ -4967,7 +4967,7 @@ MonoBehaviour:
   upmodel: {fileID: 6222823991002569616}
   boatFoot: {fileID: 3909825396199438656}
   engineParticlesHead: {fileID: 3551822084769225235}
-  acceleration: 60
+  acceleration: 40
   steeringDefault: 250
   steeringDrift: 1000
   driftDecrease: 0.5

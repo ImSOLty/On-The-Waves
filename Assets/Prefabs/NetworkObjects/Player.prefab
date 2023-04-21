@@ -5386,6 +5386,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mlPrefab: {fileID: 2189286637157909351, guid: 6c4ae3a3094624646831c0b10679b944, type: 3}
+  models:
+  - {fileID: 5022602860645237092, guid: 193974d180a7d37428fc3a4e9b93045e, type: 3}
+  - {fileID: 5022602860645237092, guid: d3d1b6bddea23474794030ad07dc0767, type: 3}
+  - {fileID: 5022602860645237092, guid: 0753ce87d4bb57548b748dddde1538c4, type: 3}
   objectCollider: {fileID: 3569494864262129054}
   objectMovement: {fileID: 0}
   everyoneReady: 0
